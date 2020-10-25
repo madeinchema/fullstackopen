@@ -1,0 +1,20 @@
+user->browser:
+
+note over user:
+user types a new note,
+clicks the "Save" button
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server:
+server receives POST request,
+adds new note to database
+end note
+
+server-->browser: 201 created, {content: "fullstack", date: "2020-10-25T21:43:42.612Z"}
+
+note over browser:
+browser updates notes array
+without refreshing the page
+end note
