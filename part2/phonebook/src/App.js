@@ -9,7 +9,11 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPersons(persons => [...persons, { [newName]: newNumber }]);
+    if (persons.some(person => newName in person)) {
+      alert(`${newName} is already added to phonebook`);
+    } else {
+      setPersons(persons => [...persons, { [newName]: newNumber }]);
+    }
     setNewName('');
     setNewNumber('');
   }
@@ -21,7 +25,6 @@ const App = () => {
       setNewNumber(e.target.value);
     }
   };
-
 
   return (
     <div>
@@ -38,7 +41,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map(person => <p><span style={{fontWeight: 'bold'}}>{Object.keys(person)}</span> {Object.values(person)}</p>)}
+      {persons.map(person => <p key={Object.keys(person)}><span style={{fontWeight: 'bold'}}>{Object.keys(person)}</span> {Object.values(person)}</p>)}
     </div>
   )
 }
