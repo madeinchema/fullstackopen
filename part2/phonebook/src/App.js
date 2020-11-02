@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Search from './components/Search';
 import NewContact from './components/NewContact';
+import Numbers from './components/Numbers';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -39,9 +40,7 @@ const App = () => {
     }
   };
 
-  const filterSearch = (item) => {
-    return item.filter(person => person.name.toLowerCase().search(search) !== -1);
-  }
+
 
   return (
     <div>
@@ -55,11 +54,7 @@ const App = () => {
         handleSubmit={handleSubmit}
       />
       <h2>Numbers</h2>
-      {filterSearch(persons).map(person => (
-        <p key={person.name}>
-          <span style={{fontWeight: 'bold'}}>{person.name}</span> {person.number}
-        </p>
-      ))}
+      <Numbers persons={persons} search={search} />
     </div>
   )
 }
