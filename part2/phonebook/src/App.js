@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Search from './components/Search';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -44,9 +45,7 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <div>
-        Search by name: <input value={search} onChange={(e) => handleChange(e, 'search')}/>
-      </div>
+      <Search search={search} handleChange={handleChange} />
       <h2>Add a new contact</h2>
       <form onSubmit={handleSubmit}>
         <div>
